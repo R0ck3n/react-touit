@@ -1,0 +1,30 @@
+.sendMessage-container {
+    width: 300px;
+    background-color: black;
+    border: 1px solid red;
+    padding: 10px;
+}
+
+.sendMessage-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.sendMessage-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.sendMessage-container input {
+    width: 100%;
+    border: 1px solid red;
+    padding-left: 10px;
+}
+
+.sendMessage-textbox {
+    width: 100%;
+    min-height: 150px;
+    padding-left: 10px;
+}

@@ -1,0 +1,35 @@
+.trendingWord-container {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.trendingWord-container p:first-child {
+    color: red;
+    font-weight: bolder;
+    font-size: 14px;
+    font-style: italic;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-family: "mustafar-reloaded", sans-serif;
+    text-align: center;
+    display: flex;
+    gap: 10px;
+}
+
+.trendingWord-container p:last-child {
+    color: red;
+    font-weight: bolder;
+    font-size: 14px;
+    font-style: italic;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-align: center;
+    display: flex;
+    gap: 10px;
+}
+
+.trendingWord-container p:first-child span {
+    font-size: 18px;
+    font-family: sans-serif;
+}

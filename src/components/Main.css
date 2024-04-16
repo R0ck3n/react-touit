@@ -1,0 +1,29 @@
+.main {
+    flex: 1 0;
+    background-image: url("../imgs/bg.png");
+    background-size: cover;
+    background-position: bottom;
+    padding: 2%;
+    display: flex;
+}
+
+.left-container {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.right-container {
+    width: 100%;
+}
+
+@media screen and (max-width: 1000px) {
+    .main {
+        flex-direction: column;
+    }
+
+    .left-container {
+        width: auto;
+    }
+}
