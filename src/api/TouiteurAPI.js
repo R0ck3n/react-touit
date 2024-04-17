@@ -1,6 +1,6 @@
 import config from "../config.js";
 
-export class Api {
+export class TouiteurAPI {
     url = config.API_URL;
 
     /**
@@ -229,5 +229,23 @@ export class Api {
                 console.error("Erreur :", erreur);
             }
         }
+    }
+
+    /**
+     * Recupere les termes les plus fréquemment utilisés
+     */
+    async getTrends(count) {
+        let trends = await fetch(this.url + "trending")
+            .then((res) => res.json())
+            .then((res) => {
+                return Object.keys(res)
+                    .map((key) => ({ word: key, occurence: res[key] }))
+                    .filter((t) => t.word.length > 3)
+                    .sort((a, b) => b.occurence - a.occurence)
+                    .slice(0, count);
+            })
+            .catch((e) => console.error(e));
+
+        return trends;
     }
 }

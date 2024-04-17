@@ -1,24 +1,31 @@
 import React, { Component } from "react";
-import { Api } from "../api/Api.js";
+import { TouiteurAPI } from "../api/TouiteurAPI.js";
 import SendMessageForm from "./SendMessageForm";
 import Trending from "./Trending";
 import Touit from "./Touit";
 import "./Main.css";
+import TouitContainer from "./TouitContainer.jsx";
 
 class Main extends Component {
-    cronInterval = 10; // Interval de rafraîchissement en secondes
-    refreshInterval = null; // Stocker l'ID de l'intervalle pour le nettoyer plus tard
+    // Interval de rafraîchissement en secondes
+    cronInterval = 60;
+
+    // Stocker l'ID de l'intervalle pour le nettoyer plus tard
+    refreshInterval = null;
+
+    // Nombre de trend affichée
+    trendCount = 10;
 
     constructor(props) {
         super(props);
+        this.api = new TouiteurAPI();
         this.state = {
             touits: [],
+            trends: this.api.getTrends(this.trendCount),
             lastTimestamp: 0,
             pseudoSendMessage: "",
             messageSended: "",
         };
-
-        this.api = new Api();
     }
 
     async componentDidMount() {
@@ -65,26 +72,19 @@ class Main extends Component {
     sendMessage = (pseudo, message) => {
         // Gérer l'envoi du message
         this.api.sendTouit(pseudo, message);
+        this.refresh();
     };
 
     render() {
+        const { touits, trends } = this.state;
         return (
             <main className="main">
                 <div className="left-container">
                     <SendMessageForm send={this.sendMessage} />
-                    <Trending />
+                    <Trending words={trends} />
                 </div>
                 <div className="right-container">
-                    {this.state.touits
-                        .sort((a, b) => b.ts - a.ts)
-                        .map(({ id, name, message, ts }) => (
-                            <Touit
-                                key={id}
-                                pseudo={name}
-                                message={message}
-                                date={ts}
-                            />
-                        ))}
+                    <TouitContainer touits={touits} />
                 </div>
             </main>
         );
