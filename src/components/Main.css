@@ -2,8 +2,11 @@
     flex: 1 0;
     background-image: url("../imgs/bg.png");
     background-size: cover;
+    background-repeat: no-repeat;
     background-position: bottom;
-    padding: 2%;
+
+    padding: 30px;
+    gap: 30px;
     display: flex;
 }
 
@@ -16,14 +19,37 @@
 
 .right-container {
     width: 100%;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-height: 80vh;
+}
+
+.right-container > div:nth-child(odd) {
+    margin-right: auto;
+}
+
+.right-container > div:nth-child(even) {
+    margin-left: auto;
 }
 
 @media screen and (max-width: 1000px) {
     .main {
         flex-direction: column;
+        background-repeat: repeat;
+    }
+
+    .right-container {
+        max-height: 60vh;
     }
 
     .left-container {
         width: auto;
+        align-items: center;
+    }
+
+    .trending-container {
+        width: 100%;
     }
 }

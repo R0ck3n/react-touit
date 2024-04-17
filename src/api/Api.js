@@ -1,4 +1,4 @@
-import config from "../../config.js";
+import config from "../config.js";
 
 export class Api {
     url = config.API_URL;
@@ -147,6 +147,17 @@ export class Api {
             .catch((e) => console.error(e));
 
         return touits;
+    }
+
+    /**
+     * Recupere tout les touits
+     */
+    async getAllTouit() {
+        const touits = await fetch(this.url + "list")
+            .then((response) => response.json())
+            .catch((e) => console.error(e));
+
+        return touits.messages;
     }
 
     /**

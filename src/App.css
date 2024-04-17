@@ -564,3 +564,9 @@ video {
     flex-direction: column;
     height: 100vh;
 }
+
+@media screen and (max-width: 1000px) {
+    .App {
+        height: 100%;
+    }
+}
