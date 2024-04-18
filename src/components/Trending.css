@@ -11,6 +11,11 @@
     text-transform: uppercase;
     letter-spacing: 3px;
     font-family: "mustafar-reloaded", sans-serif;
+    text-shadow: 0 0 2px #000, 0 0 2px #000, 0 0 2px #000, 0 0 2px #000,
+        0 0 2px #000, 0 0 2px #000, 0 0 2px #000, 0 0 2px #000, 0 0 2px #000,
+        0 0 2px #000, 0 0 2px #000, 0 0 2px #000, 0 0 2px #000, 0 0 2px #000,
+        0 0 2px #000, 0 0 2px #000, 0 0 2px #000, 0 0 2px #000, 0 0 2px #000,
+        0 0 2px #000;
 }
 
 .trending-container h3 {

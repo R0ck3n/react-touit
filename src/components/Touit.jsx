@@ -6,17 +6,18 @@ import "./Touit.css";
 class Touit extends Component {
     constructor(props) {
         super(props);
-        const { likes } = this.props;
+        const { likes, id, localLikes } = this.props;
         this.state = {
-            isLiked: false,
+            isLiked: localLikes?.[id.toString()] || false,
             likeState: likes,
         };
     }
 
     addlike = () => {
-        const { id, api } = this.props;
+        const { id, api, saveAddlike } = this.props;
         const { isLiked, likeState } = this.state;
         api.addLike(id);
+        saveAddlike(id);
         this.setState({
             isLiked: !isLiked,
             likeState: likeState + 1,
@@ -24,9 +25,10 @@ class Touit extends Component {
     };
 
     removelike = () => {
-        const { id, api } = this.props;
+        const { id, api, saveRemovelike } = this.props;
         const { isLiked, likeState } = this.state;
         api.removeLike(id);
+        saveRemovelike(id);
         this.setState({
             isLiked: !isLiked,
             likeState: likeState - 1,
@@ -35,15 +37,14 @@ class Touit extends Component {
 
     render() {
         const { pseudo, message, date } = this.props;
-        const { likeState } = this.state;
-
+        const { likeState, isLiked } = this.state;
         return (
             <div className="touit-container">
                 <h4>{pseudo}</h4>
                 <p className="touit-date">{Helpers.dateConverter(date)}</p>
                 <p className="touit-likes">{"Likes : " + likeState}</p>
                 <p className="touit-msg">{message}</p>
-                {this.state.isLiked ? (
+                {isLiked ? (
                     <Button text="remove like" onclick={this.removelike} />
                 ) : (
                     <Button text="add like" onclick={this.addlike} />

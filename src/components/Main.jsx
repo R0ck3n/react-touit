@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { TouiteurAPI } from "../api/TouiteurAPI.js";
 import SendMessageForm from "./SendMessageForm";
 import Trending from "./Trending";
-import Touit from "./Touit";
 import "./Main.css";
 import TouitContainer from "./TouitContainer.jsx";
 
@@ -16,35 +15,34 @@ class Main extends Component {
     // Nombre de trend affichée
     trendCount = 10;
 
+    //last timestamp
+    lastTimestamp = 0;
+
     constructor(props) {
         super(props);
         this.api = new TouiteurAPI();
         this.state = {
             touits: [],
             trends: this.api.getTrends(this.trendCount),
-            lastTimestamp: 0,
             pseudoSendMessage: "",
             messageSended: "",
         };
     }
 
     async componentDidMount() {
-        await this.refresh(); // Rafraîchir une première fois lors du montage
-        this.refreshInterval = setInterval(
-            this.refresh.bind(this),
-            this.cronInterval * 1000
-        ); // Lancer le rafraîchissement périodique
+        this.refresh();
+        this.refreshInterval = setInterval(this.cronInterval * 1000);
     }
 
     componentWillUnmount() {
-        clearInterval(this.refreshInterval); // Nettoyer l'intervalle lors du démontage
+        if (this.refreshInterval !== false) {
+            clearInterval(this.refreshInterval);
+        }
     }
 
     refresh = async () => {
-        if (this.state.lastTimestamp !== 0) {
-            const newTouits = await this.api.getTouitSince(
-                this.state.lastTimestamp
-            );
+        if (this.lastTimestamp !== 0) {
+            const newTouits = await this.api.getTouitSince(this.lastTimestamp);
 
             if (newTouits.messages.length > 0) {
                 let newTouitList = [
@@ -57,15 +55,13 @@ class Main extends Component {
                         self.findIndex((t) => t.id === objet.id) === index
                 );
 
-                this.setState({
-                    touits: filteredTouitList,
-                    lastTimestamp: newTouits.ts,
-                });
+                this.setState({ touits: filteredTouitList });
+                this.lastTimestamp = newTouits.ts;
             }
         } else {
             const touits = await this.api.getAllTouit();
             this.setState({ touits });
-            this.setState({ lastTimestamp: touits[touits.length - 1].ts });
+            this.lastTimestamp = touits[touits.length - 1].ts;
         }
     };
 

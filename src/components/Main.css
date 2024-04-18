@@ -18,6 +18,10 @@
 }
 
 .right-container {
+    width: calc(100% - 300px);
+}
+
+.right-container section {
     width: 100%;
     overflow: hidden auto;
     display: flex;
@@ -26,11 +30,14 @@
     max-height: 80vh;
 }
 
-.right-container > div:nth-child(odd) {
+.right-container section > div:nth-child(odd) {
     margin-right: auto;
 }
+.right-container section > div:nth-child(odd).loading-touits {
+    margin-right: inherit;
+}
 
-.right-container > div:nth-child(even) {
+.right-container section > div:nth-child(even) {
     margin-left: auto;
 }
 
@@ -42,11 +49,15 @@
 
     .right-container {
         max-height: 60vh;
+        width: 100%;
     }
 
     .left-container {
+        flex-direction: row;
         width: auto;
         align-items: center;
+        justify-content: space-around;
+        flex-wrap: wrap;
     }
 
     .trending-container {
