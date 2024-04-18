@@ -1,7 +1,7 @@
 .trendingWord-container {
     margin-top: 10px;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
 }
 
 .trendingWord-container p:first-child {

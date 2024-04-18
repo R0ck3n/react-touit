@@ -27,13 +27,15 @@ class Trending extends Component {
         return (
             <div className="trending-container">
                 <h3>Trending</h3>
-                {data.map(({ word, occurence }) => (
-                    <TrendingWord
-                        key={word}
-                        word={word}
-                        occurence={occurence}
-                    />
-                ))}
+                <ol>
+                    {data.map(({ word, occurence }) => (
+                        <TrendingWord
+                            key={word}
+                            word={word}
+                            occurence={occurence}
+                        />
+                    ))}
+                </ol>
             </div>
         );
     }

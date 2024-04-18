@@ -77,14 +77,21 @@ class Main extends Component {
 
     render() {
         const { touits, trends } = this.state;
+
         return (
             <main className="main">
                 <div className="left-container">
-                    <SendMessageForm send={this.sendMessage} />
-                    <Trending words={trends} />
+                    <section>
+                        <SendMessageForm send={this.sendMessage} />
+                    </section>
+                    <section>
+                        <Trending words={trends} />
+                    </section>
                 </div>
                 <div className="right-container">
-                    <TouitContainer touits={touits} />
+                    <section>
+                        <TouitContainer touits={touits} api={this.api} />
+                    </section>
                 </div>
             </main>
         );

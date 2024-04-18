@@ -15,7 +15,8 @@
     letter-spacing: 3px;
 }
 
-.touit-container p:nth-child(2) {
+.touit-container .touit-date,
+.touit-container .touit-likes {
     font-weight: bolder;
     font-size: 12px;
     font-style: italic;
@@ -23,8 +24,9 @@
     text-align: right;
 }
 
-.touit-container p:last-child {
+.touit-container .touit-msg {
     font-weight: bolder;
     font-size: 16px;
     font-style: italic;
+    word-wrap: break-word;
 }

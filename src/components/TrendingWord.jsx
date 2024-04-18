@@ -5,13 +5,15 @@ class TrendingWord extends Component {
     render() {
         const { word, occurence } = this.props;
         return (
-            <div className="trendingWord-container">
-                <p>
-                    {word}
-                    <span>:</span>
-                </p>
+            <li className="trendingWord-container">
+                <div>
+                    <p>
+                        {word}
+                        <span>:</span>
+                    </p>
+                </div>
                 <p>{occurence}</p>
-            </div>
+            </li>
         );
     }
 }

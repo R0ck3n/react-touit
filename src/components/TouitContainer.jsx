@@ -4,18 +4,20 @@ import Touit from "./Touit";
 
 class TouitContainer extends Component {
     render() {
-        const { touits } = this.props;
-
+        const { touits, api } = this.props;
         return (
             <>
                 {touits
                     .sort((a, b) => b.ts - a.ts)
-                    .map(({ id, name, message, ts }) => (
+                    .map(({ id, name, message, ts, likes }) => (
                         <Touit
                             key={id}
                             pseudo={name}
                             message={message}
+                            likes={likes}
                             date={ts}
+                            id={id}
+                            api={api}
                         />
                     ))}
             </>

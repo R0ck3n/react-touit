@@ -19,7 +19,7 @@
 
 .right-container {
     width: 100%;
-    overflow-y: auto;
+    overflow: hidden auto;
     display: flex;
     flex-direction: column;
     gap: 20px;
