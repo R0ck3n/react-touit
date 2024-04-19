@@ -567,6 +567,7 @@ video {
 
 footer {
     background-color: black;
+    min-height: 1rem;
 }
 
 @media screen and (max-width: 1000px) {
