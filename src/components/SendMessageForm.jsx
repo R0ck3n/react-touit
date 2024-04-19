@@ -29,6 +29,11 @@ class SendMessageForm extends Component {
             <div className="sendMessage-container">
                 <form onSubmit={this.handleForm}>
                     <div>
+                        <h2>
+                            Envoyer un Touit <span>:</span>
+                        </h2>
+                    </div>
+                    <div>
                         <label htmlFor="pseudo"></label>
                         <input
                             type="text"

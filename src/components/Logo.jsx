@@ -10,9 +10,9 @@ class Logo extends Component {
                     <span>-</span>
                     <p>touit</p>
                 </div>
-                <p className="slogan">
-                    Un réseau sans maîtres, où chaque voix compte.
-                </p>
+                <h1 className="slogan">
+                    Un réseau sans maîtres, où chaque voix comh1te.
+                </h1>
             </>
         );
     }
