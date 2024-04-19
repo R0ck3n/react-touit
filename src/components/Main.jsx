@@ -7,7 +7,7 @@ import TouitContainer from "./TouitContainer.jsx";
 
 class Main extends Component {
     // Interval de rafraîchissement en secondes
-    cronInterval = 60;
+    cronInterval = 10;
 
     // Stocker l'ID de l'intervalle pour le nettoyer plus tard
     refreshInterval = null;
@@ -31,7 +31,10 @@ class Main extends Component {
 
     async componentDidMount() {
         this.refresh();
-        this.refreshInterval = setInterval(this.cronInterval * 1000);
+        this.refreshInterval = setInterval(
+            () => this.refresh(),
+            this.cronInterval * 1000
+        );
     }
 
     componentWillUnmount() {
@@ -41,6 +44,7 @@ class Main extends Component {
     }
 
     refresh = async () => {
+        console.log("refresh");
         if (this.lastTimestamp !== 0) {
             const newTouits = await this.api.getTouitSince(this.lastTimestamp);
 
@@ -73,7 +77,6 @@ class Main extends Component {
 
     render() {
         const { touits, trends } = this.state;
-
         return (
             <main className="main">
                 <div className="left-container">

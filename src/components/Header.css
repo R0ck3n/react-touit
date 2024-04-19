@@ -32,3 +32,19 @@ nav ul li a:hover {
     color: rgb(227, 73, 73);
     scale: 1.2;
 }
+
+@media screen and (max-width: 1000px) {
+    nav {
+        align-items: flex-end;
+    }
+
+    nav ul li {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    nav ul li p {
+        display: none;
+    }
+}
